@@ -1,0 +1,30 @@
+<button (click)="startGame()">Rest Game</button>
+
+<br><br>
+
+<label for="selectPlayMode">Choose play mode </label>
+<select name="selectPlayMode" #selectPlayMode (change)="onSelectePlayMode(selectPlayMode.value)">
+    <option default value="multi">multi player</option>
+    <option value="single">single player</option>
+</select>
+
+<br><br>
+
+<table border="1px" style="width: max-content;">
+    <tr *ngFor="let i of rowIndexArry" style="height: 50px; text-align: center;">
+        <td *ngFor="let cell of matrix[i]; let j = index;" style="width: 50px"
+            (click)="onCellClick(cell.coordinates.row, cell.coordinates.col)"
+            [ngStyle]="{ 'background-color': cell.isPartOfLineOfSameSymbol ? 'orange' : 'unset' }">
+            <div style="width: 100%; height: 100%; display: flex; align-items: center;">
+                <svg *ngIf="cell.symbol === 'x'" style="width: 90%; margin: auto;"  viewBox="0 0 24 24">
+                    <g id="_icons">
+                        <path d="M5.3,18.7C5.5,18.9,5.7,19,6,19s0.5-0.1,0.7-0.3l5.3-5.3l5.3,5.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3   c0.4-0.4,0.4-1,0-1.4L13.4,12l5.3-5.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L12,10.6L6.7,5.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4   l5.3,5.3l-5.3,5.3C4.9,17.7,4.9,18.3,5.3,18.7z" />
+                    </g>
+                </svg>
+                <svg *ngIf="cell.symbol === 'o'" style="width: 70%; margin: auto;" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="8" stroke="#000000" stroke-width="2" />
+                </svg>
+            </div>
+        </td>
+    </tr>
+</table>
